@@ -8,8 +8,9 @@ LETTER_2 = "letter_templates/letter_2.txt"
 LETTER_3 = "letter_templates/letter_3.txt"
 WISHING_LETTERS = "wishes_letters"
 PLACEHOLDER = "[NAME]"
-myEmail = "sudarshan111999@gmail.com"
-myPwd = "eralnxefgrikowum"
+myEmail = os.environ.get("sudarshan111999@gmail.com")
+myPwd = os.environ.get("eralnxefgrikowum")
+
 
 now = dt.datetime.now()
 today_month = now.month
@@ -39,6 +40,6 @@ for bday in birthday_dict:
                 connection.login(user=myEmail, password=myPwd)
                 connection.sendmail(
                     from_addr=myEmail,
-                    to_addrs="sudarn.sathish@gmail.com",
-                    msg=f"Subject: HAPPY BIRTHDAY\n\n{wishing_card}"
+                    to_addrs=f"{birthday_dict[bday][1]}",
+                    msg=f"Subject: HAPPY BIRTHDAY!!!\n\n{wishing_card}"
                 )
