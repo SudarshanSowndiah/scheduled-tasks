@@ -2,6 +2,7 @@ import pandas
 import datetime as dt
 import random
 import smtplib
+import os
 
 LETTER_1 = "letter_templates/letter_1.txt"
 LETTER_2 = "letter_templates/letter_2.txt"
