@@ -9,8 +9,8 @@ LETTER_2 = "letter_templates/letter_2.txt"
 LETTER_3 = "letter_templates/letter_3.txt"
 WISHING_LETTERS = "wishes_letters"
 PLACEHOLDER = "[NAME]"
-myEmail = os.environ.get("sudarshan111999@gmail.com")
-myPwd = os.environ.get("eralnxefgrikowum")
+MY_EMAIL = os.environ.get("MY_EMAIL")
+MY_PASSWORD = os.environ.get("MY_PASSWORD")
 
 
 now = dt.datetime.now()
@@ -38,9 +38,9 @@ for bday in birthday_dict:
             
             with smtplib.SMTP("smtp.gmail.com") as connection:
                 connection.starttls()
-                connection.login(user=myEmail, password=myPwd)
+                connection.login(user=MY_EMAIL, password=MY_PASSWORD)
                 connection.sendmail(
-                    from_addr=myEmail,
+                    from_addr=MY_EMAIL,
                     to_addrs=f"{birthday_dict[bday][1]}",
                     msg=f"Subject: HAPPY BIRTHDAY!!!\n\n{wishing_card}"
                 )
