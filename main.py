@@ -7,7 +7,6 @@ import os
 LETTER_1 = "letter_templates/letter_1.txt"
 LETTER_2 = "letter_templates/letter_2.txt"
 LETTER_3 = "letter_templates/letter_3.txt"
-WISHING_LETTERS = "wishes_letters"
 PLACEHOLDER = "[NAME]"
 MY_EMAIL = os.environ.get("MY_EMAIL")
 MY_PASSWORD = os.environ.get("MY_PASSWORD")
@@ -30,17 +29,11 @@ for bday in birthday_dict:
             letter_content = wish_letter.read()    
             update_letter = letter_content.replace(PLACEHOLDER, birthday_dict[bday][0])
             
-            with open(f"{WISHING_LETTERS}/Birthday_wish_for_{birthday_dict[bday][0]}", mode="w") as birthday_wish:
-                birthday_wish.write(update_letter)
-
-            with open(f"{WISHING_LETTERS}/Birthday_wish_for_{birthday_dict[bday][0]}", mode="r") as for_email:
-                wishing_card = for_email.read()
-            
             with smtplib.SMTP("smtp.gmail.com") as connection:
                 connection.starttls()
                 connection.login(user=MY_EMAIL, password=MY_PASSWORD)
                 connection.sendmail(
                     from_addr=MY_EMAIL,
                     to_addrs=f"{birthday_dict[bday][1]}",
-                    msg=f"Subject: HAPPY BIRTHDAY!!!\n\n{wishing_card}"
+                    msg=f"Subject: HAPPY BIRTHDAY!!!\n\n{update_letter}"
                 )
